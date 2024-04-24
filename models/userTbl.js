@@ -17,8 +17,20 @@ const Student = sequelize.define("Student", {
    },
    age: {
      type: DataTypes.INTEGER,
-   }
+   },
+   FeeId: { 
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: 'Fees',
+      key: 'id'
+    },
+  }
 });
+
+Student.associate = models => {
+  Student.belongsTo(models.Fees, { foreignKey: 'FeesId' });
+};
 
 sequelize.sync().then(() => {
    console.log('Student table created successfully!');

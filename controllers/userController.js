@@ -2,12 +2,14 @@ const userTbl = require('../models/userTbl');
 
 const addUser = async (req,res) => {
     try {
-        const{id,name,marks,age} = req.body;
+        const{id,name,marks,age,FeeId,CourseId} = req.body;
         let userData = await userTbl.create({
             id : id,
             name : name,
             marks : marks,
-            age : age
+            age : age,
+            FeeId :FeeId,
+            CourseId : CourseId
         });
         if(userData){
             res.json({ message  : "Record inserted successfully", status : 1});
